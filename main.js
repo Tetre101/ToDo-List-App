@@ -50,3 +50,20 @@ function displayTodoItems(todosToDisplay) {
     list.appendChild(li);
   });
 }
+
+// Listen for click events on the delete and edit buttons
+list.addEventListener("click", function (e) {
+  if (e.target.classList.contains("delete")) {
+    const id = Number(e.target.dataset.id);
+    todos = todos.filter((todo) => todo.id !== id); // remove the todo item with the specified id from the todos array
+    displayTodoItems(todos); // display the updated todos list
+  } else if (e.target.classList.contains("edit")) {
+    const id = Number(e.target.dataset.id);
+    const todo = todos.find((todo) => todo.id === id); // find the todo item with the specified id
+    const newText = prompt("Enter new todo text:", todo.text); // prompt the user to enter new text for the todo item
+    if (newText) {
+      todo.text = newText;
+      displayTodoItems(todos); // display the updated todos list
+    }
+  }
+});
