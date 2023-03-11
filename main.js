@@ -67,3 +67,15 @@ list.addEventListener("click", function (e) {
     }
   }
 });
+
+// Listen for keyup events on the search input to filter the todo items
+searchInput.addEventListener("keyup", function (e) {
+  const searchTerm = e.target.value.toLowerCase();
+  const filteredTodos = todos.filter((todo) =>
+    todo.text.toLowerCase().includes(searchTerm)
+  );
+  displayTodoItems(filteredTodos);
+});
+
+// Display the initial list of todos
+displayTodoItems(todos);
